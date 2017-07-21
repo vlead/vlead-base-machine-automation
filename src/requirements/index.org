@@ -1,0 +1,15 @@
+#+Title: Requirements of automating the cluster creation 
+#+Author: Systems Team
+#+SETUPFILE: ../org-templates/level-1.org
+#+TAGS: boilerplate(b)
+#+EXCLUDE_TAGS: boilerplate
+#+OPTIONS: ^:nil
+* Introduction
+  This document contains the requirements of automating the VLEAD base
+  machines configuration.
+* Requirements
+** Req 1
+   Automate the base configuration steps.
+
+  Implementation of this requirement is [[../imp/index.org][here]]
+   

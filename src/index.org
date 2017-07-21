@@ -1,0 +1,25 @@
+#+Title: Virtual Labs Cluster Automation
+#+Author: System Team
+#+SETUPFILE: ./org-templates/level-0.org
+#+TAGS: boilerplate(b)
+#+EXCLUDE_TAGS: boilerplate
+#+OPTIONS: ^:nil
+* Introduction
+  This document is for automating the base machine of Virtual-Labs
+  using ansible( Configuration management tool).
+* Problem statement 
+  We do not have automation script for setting up base machines
+  VLEAD-IIITH infrastructure. To configure any base(1,2,3,4) machine
+  in VLEAD.
+* Objective 
+  Automate the base machine(s) setup. So that eliminate manual steps
+  to configure base machines.
+* Requirements 
+  - [[./requirements/index.org][Requirements]]
+* Implementation
+  - [[./implementation/index.org][Implementation]]
+* Bootstrapping steps
+* Important Repositories
+* Issues and Milestones
+* Branches in cluster-automation repository
+
