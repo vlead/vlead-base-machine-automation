@@ -1,4 +1,4 @@
-#+Title: Virtual Labs Cluster Automation
+#+Title: Automate VLEAD BASE machine(s) setup
 #+Author: System Team
 #+SETUPFILE: ./org-templates/level-0.org
 #+TAGS: boilerplate(b)
