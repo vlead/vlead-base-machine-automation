@@ -9,4 +9,75 @@
   This document contains the implementation of automation of cluster
   creation.
 * Implementation
-  
+  Followed below base machine configuration details
+  #+BEGIN_EXAMPLE
+  Operating System: CentOS-6.7
+  RAM: 16GB RAM
+  Cpus: 8
+  Disk Space: 193 GB to 250 GB
+  #+END_EXAMPLE
+  Install below required packages 
+  #+BEGIN_EXAMPLE
+  yum -y update
+  yum -y upgrade
+  yum -y emacs vim curl wget 
+  #+END_EXAMPLE
+  Update operating system following details after upgrade the system.
+  #+BEGIN_EXAMPLE
+  Operating System: CentOS-6.9
+  RAM: 16GB RAM
+  Cpus: 8
+  Disk Space: 193 GB to 250 GB
+  #+END_EXAMPLE
+  Install OpneVZ
+  #+BEGIN_EXAMPLE
+  wget -P /etc/yum.repos.d/ http://ftp.openvz.org/openvz.repo
+  rpm --import http://download.openvz.org/RPM-GPG-Key-OpenVZ
+  yum install -y vzkernel
+  #+END_EXAMPLE
+  Setting up kernel parameters. Add the following kernel parameters
+  before logging into vz kernel
+  #+BEGIN_EXAMPLE
+  vim /etc/sysctl.conf
+  #+END_EXAMPLE
+  Add the following lines
+  #+BEGIN_EXAMPLE
+  # On Hardware Node we generally need
+  # packet forwarding enabled and proxy arp disabled
+  net.ipv4.ip_forward = 1
+  net.ipv6.conf.default.forwarding = 1
+  net.ipv6.conf.all.forwarding = 1
+  net.ipv4.conf.default.proxy_arp = 0
+  # Enables source route verification
+  net.ipv4.conf.all.rp_filter = 1
+  # Enables the magic-sysrq key
+  kernel.sysrq = 1
+  # We do not want all our interfaces to send redirects
+  net.ipv4.conf.default.send_redirects = 1
+  net.ipv4.conf.all.send_redirects = 0
+  #+END_EXAMPLE
+  Open up the selinux config file and make the SELINUX attribute disabled.
+  #+BEGIN_EXAMPLE
+  vim /etc/sysconfig/selinux
+  #+END_EXAMPLE
+  For example:
+  #+BEGIN_EXAMPLE
+  This file controls the state of SELinux on the system.
+  # SELINUX= can take one of these three values:
+  #     enforcing - SELinux security policy is enforced.
+  #     permissive - SELinux prints warnings instead of enforcing.
+  #     disabled - No SELinux policy is loaded.
+  SELINUX=disabled
+  # SELINUXTYPE= can take one of these two values:
+  #     targeted - Targeted processes are protected,
+  #     mls - Multi Level Security protection.
+  SELINUXTYPE=targeted
+  #+END_EXAMPLE
+  Install OpenVZ tools
+  #+BEGIN_EXAMPLE
+  yum install -y vzctl vzquota ploop
+  #+END_EXAMPLE
+  Successfully installed OpenVZ. Now reboot the machine
+  #+BEGIN_EXAMPLE
+  reboot
+  #+END_EXAMPLE
